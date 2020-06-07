@@ -22,6 +22,10 @@ h1 {
     filter: blur(5px);
 }
 
+button {
+    height:100%;
+}
+
 * {
     box-sizing: border-box;
   }
