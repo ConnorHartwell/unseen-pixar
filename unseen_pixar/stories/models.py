@@ -10,14 +10,19 @@ from django.db import models
 #genreid - description
 class Genre(models.Model):
     description = models.CharField(max_length=300)
+
 class Story(models.Model):
     genre = models.ForeignKey(Genre, on_delete = models.PROTECT)
+    title = models.CharField(max_length=280)
     once_upon_a_time = models.CharField(max_length=280)
     every_day = models.CharField(max_length=280)
     one_day = models.CharField(max_length=280)
     result = models.CharField(max_length=280)
     result2 = models.CharField(max_length=280)
     until_finally = models.CharField(max_length=280)
+    def __str__(self):
+        return self.title
+
 #usertable
 #userid - username - email
 class User(models.Model):
