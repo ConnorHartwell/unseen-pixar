@@ -11,7 +11,7 @@ from django.conf import settings
 #genreid - description
 class Genre(models.Model):
     description = models.CharField(max_length=300)
-
+    
 class Story(models.Model):
     genre = models.ForeignKey(Genre, on_delete = models.PROTECT)
     title = models.CharField(max_length=280)
@@ -21,13 +21,9 @@ class Story(models.Model):
     result = models.CharField(max_length=280)
     result2 = models.CharField(max_length=280)
     until_finally = models.CharField(max_length=280)
+    # def __str__(self):
+    #     return self.title
 
-#usertable
-#userid - username - email
-class User(models.Model):
-    username = models.CharField(max_length=20)
-    email = models.CharField(max_length=20)
-    password = models.CharField(max_length=100) #obviously this needs actual encryption - there's apps to do this for me though later.
 
 #userstories - stops users from working on same story twice, and can track when a user's story is complete.
 #represents the many-many relationship between user and stories
