@@ -1,13 +1,8 @@
-<!doctype html>
-<html>
-    <head>
-        {% load static %}
-        <meta charset="UTF8">
-        <title>Unseen Movie Ideas</title>
-        <link href="{% static 'stories/style.css' %}" rel="stylesheet" type="text/css">
-    </head>
 
-    <body>
+
+    {% extends "stories/base.html" %}
+    {% block content %}
+
     <div id="main_text">
     <span>
         <button type="button"> &lt; </button>
@@ -15,7 +10,5 @@
         <button type="button"> &gt; </button>
     </span>
     </div>
-    </body>
-        <a href="accounts/login/">Login</a>
 
-</html>
+    {% endblock content %}
