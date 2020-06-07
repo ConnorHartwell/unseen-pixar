@@ -10,6 +10,7 @@ from django.db import models
 #genreid - description
 class Genre(models.Model):
     description = models.CharField(max_length=300)
+    
 class Story(models.Model):
     genre = models.ForeignKey(Genre, on_delete = models.PROTECT)
     once_upon_a_time = models.CharField(max_length=280)
@@ -18,6 +19,7 @@ class Story(models.Model):
     result = models.CharField(max_length=280)
     result2 = models.CharField(max_length=280)
     until_finally = models.CharField(max_length=280)
+
 #usertable
 #userid - username - email
 class User(models.Model):
