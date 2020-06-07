@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 #base story
 #everything length of a tweet?
@@ -23,18 +24,14 @@ class Story(models.Model):
     def __str__(self):
         return self.title
 
-#usertable
-#userid - username - email
-class User(models.Model):
-    username = models.CharField(max_length=20)
-    email = models.CharField(max_length=20)
-    password = models.CharField(max_length=100) #obviously this needs actual encryption - there's apps to do this for me though later.
 
 #userstories - stops users from working on same story twice, and can track when a user's story is complete.
 #represents the many-many relationship between user and stories
 #userid - storyid
 class UserStory(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     story = models.ForeignKey(Story, on_delete=models.SET_NULL, null = True)
-
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
 # Create your models here.
