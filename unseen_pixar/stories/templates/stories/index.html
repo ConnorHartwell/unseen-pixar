@@ -6,14 +6,19 @@
     <body>
     <div class="bg-img"></div>
 
+    <script>
+
+    </script>
+
     <div id="main_text">
     <span>
-        <button type="button"> &lt; </button>
-        <h1> {{ stage }} ...
-            <br /> 
-            {{ story }} 
-        </h1>
-        <button type="button"> &gt; </button>
+    {% comment %} doing stages like this until I understand cookies. {% endcomment %}
+        <button onclick='back'id='{{ stageid }}'class="grid-elem" type="button"> &lt; </button>
+        <div class='grid-elem' id='middle'>
+            <h1 id='header'> once upin </h1>
+            <h2 >there was x </h2>
+        </div>
+        <button onclick='forward' class="grid-elem" type="button"> &gt; </button>
     </span>
     </div>
 
