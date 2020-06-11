@@ -23,17 +23,18 @@ def create_story(intro):
 def add_to_story(storyid, text):
     current_story =load_story(storyid)
 
-def next_part_of_story(storyid,stageid):
-    stageid += 1
+def get_curr_story_text(storyid, stageid):
     this_story = load_story(storyid)
-
-    return this_story[stageid]
+    if(this_story[stageid] == None):
+        return ""
+    else:
+        return this_story[stageid]
     
 #REFACTOR LATER - this is inefficient. as in the whole pipeline of doing this
 def load_story(storyid):
     this_story = Story.objects.get(pk=storyid)
     
-    currstory = []
+    currstory = [""] * 6
     try:
         currstory[0]=this_story.once_upon_a_time;
         currstory[1]=this_story.every_day
