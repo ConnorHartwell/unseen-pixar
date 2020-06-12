@@ -6,14 +6,50 @@
     <body>
     <div class="bg-img"></div>
 
+    <script src="//code.jquery.com/jquery-1.11.0.min.js">
+
+        stageid = 0;
+   
+
+        
+        function get_stage_text()
+        {
+            
+        }
+
+        function get_written_text()
+        {
+            new_text = $.post("localhost:8000/story/{{story.pk}}/" + stageid;
+            new_text.done(function( data ) {
+                $('#story').html(data);
+
+            });
+            
+        }
+
+                function next() {
+            stageid += 1;
+            get_written_text();
+        }
+
+        function back()
+        {
+            stageid -= 1;
+            get_written_text();
+        }
+
+            
+    </script>
+
     <div id="main_text">
     <span>
-        <button type="button"> &lt; </button>
-        <h1> {{ stage }} ...
-            <br /> 
-            {{ story }} 
-        </h1>
-        <button type="button"> &gt; </button>
+    {% comment %} doing stages like this until I understand cookies. {% endcomment %}
+        <button onclick='back'id='{{ stageid }}'class="grid-elem" type="button"> &lt; </button>
+        <div class='grid-elem' id='middle'>
+            <h1 id='header'> {{stage}}... </h1>
+            <h2 id= 'story'> {{story}} </h2>
+        </div>
+        <button onclick='next()' class="grid-elem" type="button"> &gt; </button>
     </span>
     </div>
 
