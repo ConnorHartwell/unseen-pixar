@@ -15,10 +15,11 @@ def get_active_story():
         return None
 
 #start new story
-def create_story(intro):
-    new_story = Story(ouat=intro)
+def create_story():
+    new_story = Story()
     
     new_story.save()
+    return new_story
 
 def add_to_story(storyid, text):
     current_story =load_story(storyid)

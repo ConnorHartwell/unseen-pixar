@@ -6,36 +6,34 @@
     <body>
     <div class="bg-img"></div>
 
-    <script src="//code.jquery.com/jquery-1.11.0.min.js">
+    <script>
 
-        stageid = 0;
-   
-
+        $(function() {
+            update();
+        });
         
-        function get_stage_text()
-        {
-            
-        }
-
-        function get_written_text()
-        {
-            new_text = $.post("localhost:8000/story/{{story.pk}}/" + stageid;
-            new_text.done(function( data ) {
-                $('#story').html(data);
-
+        stageid = 0;
+        function update() {
+            alert("test");
+            $.ajax({
+                url: '/ajax/story/0/1',
+                dataType: 'json',
+                success: function (data) {
+                    document.getElementById('header').html(data.stage);
+                    document.getElementById('story').html(data.story);
+                }
             });
-            
         }
-
-                function next() {
+        $('#next').click(function() {
+            alert("test");
             stageid += 1;
-            get_written_text();
-        }
+            update();
+        });
 
         function back()
         {
             stageid -= 1;
-            get_written_text();
+            update();
         }
 
             
@@ -46,10 +44,10 @@
     {% comment %} doing stages like this until I understand cookies. {% endcomment %}
         <button onclick='back'id='{{ stageid }}'class="grid-elem" type="button"> &lt; </button>
         <div class='grid-elem' id='middle'>
-            <h1 id='header'> {{stage}}... </h1>
-            <h2 id= 'story'> {{story}} </h2>
+            <h1 id='header'> </h1>
+            <h2 id= 'story'></h2>
         </div>
-        <button onclick='next()' class="grid-elem" type="button"> &gt; </button>
+        <button id='next' class="grid-elem" type="button"> &gt; </button>
     </span>
     </div>
 
