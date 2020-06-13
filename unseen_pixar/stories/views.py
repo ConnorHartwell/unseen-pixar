@@ -20,8 +20,11 @@ def index(request):
     return render(request, 'stories/index.html',context)
 
 def get_story_from_id(request,stageid,storyid):
-    content = {
-        'story' : get_curr_story_text(storyid, stageid),
-        'stage' : stage_id_to_string(stageid)
-    }
-    return JsonResponse(content)
+    if(request.method == "GET"):
+        content = {
+            'story' : get_curr_story_text(storyid, stageid),
+            'stage' : stage_id_to_string(stageid)
+        }
+        return JsonResponse(content)
+    return 0
+    
