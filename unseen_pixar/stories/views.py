@@ -23,7 +23,8 @@ def get_story_from_id(request,stageid,storyid):
     if(request.method == "GET"):
         content = {
             'story' : get_curr_story_text(storyid, stageid),
-            'stage' : stage_id_to_string(stageid)
+            'stage' : stage_id_to_string(stageid),
+            'is_last': is_last_section(storyid,stageid)
         }
         return JsonResponse(content)
     return 0

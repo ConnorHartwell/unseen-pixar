@@ -8,17 +8,22 @@
 
     <script>
         stageid = 0;
+        islast = false;
         $(function() {
             update();
             
         
             $("#next").click(function() {
-                stageid ++;
+                if(islast == false) {
+                    stageid ++;
+                }
                 update();
             });
 
             $("#back").click(function() {
-                stageid --;
+                if(stageid > 0) {
+                    stageid --;
+                }
                 update();
             });
 
@@ -33,25 +38,46 @@
                 success: function (data) {
                     document.getElementById("header").innerHTML = data.stage;
                     document.getElementById("story").innerHTML = data.story;
+                    if(data.is_last == true) {
+                        showForm();
+                        islast = true;
+                    } else {
+                        hideForm();
+                        islast = false;
+                    }
                 }
             });
         }
 
 
 
+        function showForm() {
+            document.getElementById("form_input").style.display="block";
+        }
+        function hideForm() {
+            document.getElementById("form_input").style.display="none";
+        }
+        
+
             
     </script>
 
     <div id="main_text">
-    <span>
     {% comment %} doing stages like this until I understand cookies. {% endcomment %}
         <button id='back' class="grid-elem" type="button"> &lt; </button>
         <div class='grid-elem' id='middle'>
             <h1 id='header'> </h1>
             <h2 id= 'story'></h2>
+            <h3>
+            <form id="form_input" action="/your-name/" method="post">
+                {% csrf_token %}
+                <input type="text" id="next_part_of_story">
+                <input type="submit" value="Submit">
+            </form>
+            </h3>
         </div>
+        
         <button id="next" class="grid-elem" type="button"> &gt; </button>
-    </span>
     </div>
 
     {% endblock content %}

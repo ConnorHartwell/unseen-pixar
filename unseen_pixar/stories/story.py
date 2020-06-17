@@ -31,7 +31,14 @@ def get_curr_story_text(storyid, stageid):
     else:
         return this_story[stageid]
     
-#REFACTOR LATER - this is inefficient. as in the whole pipeline of doing this
+def is_last_section(storyid, stageid):
+    this_story = load_story(storyid)
+    if(this_story[stageid] == ""):
+        return True
+    else:
+        return False
+
+
 def load_story(storyid):
     this_story = Story.objects.get(pk=storyid)
     
