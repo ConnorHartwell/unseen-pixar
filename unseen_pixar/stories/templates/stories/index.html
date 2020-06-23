@@ -63,15 +63,14 @@
     </script>
 
     <div id="main_text">
-    {% comment %} doing stages like this until I understand cookies. {% endcomment %}
         <button id='back' class="grid-elem" type="button"> &lt; </button>
         <div class='grid-elem' id='middle'>
             <h1 id='header'> </h1>
             <h2 id= 'story'></h2>
             <h3>
-            <form id="form_input" action="/your-name/" method="post">
+            <form id="form_input" action="{% url 'submit' story.pk %}" method="post">
                 {% csrf_token %}
-                <input type="text" id="next_part_of_story">
+                <input type="text" name="story_text">
                 <input type="submit" value="Submit">
             </form>
             </h3>

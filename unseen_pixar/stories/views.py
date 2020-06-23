@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
-from django.http import Http404, HttpRequest, HttpResponse, JsonResponse
+from django.http import Http404, HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
 from .story import *
 from django.template import Context
+from django.urls import reverse
+import urllib
 
 def index(request):
     story = get_active_story()
@@ -29,3 +31,11 @@ def get_story_from_id(request,stageid,storyid):
         return JsonResponse(content)
     return 0
     
+def submit(request,storyid):
+    try:
+        new_text = request.POST['story_text']
+    except(Story.DoesNotExist):
+        return index(request)
+    else:
+        add_to_story(storyid,new_text)
+    return HttpResponseRedirect(reverse('index'))

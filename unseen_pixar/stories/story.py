@@ -22,7 +22,24 @@ def create_story():
     return new_story
 
 def add_to_story(storyid, text):
-    current_story =load_story(storyid)
+    actual_story = Story.objects.get(pk=storyid)
+
+
+    if(actual_story.once_upon_a_time == ""):
+        actual_story.once_upon_a_time = text
+    elif(actual_story.every_day == ""):
+        actual_story.every_day = text
+    elif(actual_story.one_day == ""):
+        actual_story.one_day = text   
+    elif(actual_story.result == ""):
+        actual_story.result = text   
+    elif(actual_story.result2 == ""):
+        actual_story.result2 = text   
+    elif(actual_story.until_finally == ""):
+        actual_story.until_finally = text   
+    actual_story.save()
+    #else story full
+    #TODO: throw error on full.
 
 def get_curr_story_text(storyid, stageid):
     this_story = load_story(storyid)
